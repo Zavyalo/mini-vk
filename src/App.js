@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import bridge from '@vkontakte/vk-bridge';
-import { View, SplitLayout, SplitCol, ScreenSpinner, Group, useAdaptivityConditionalRender, List, Cell, Avatar } from '@vkontakte/vkui';
+import { View, SplitLayout, SplitCol, ScreenSpinner, Group, useAdaptivityConditionalRender } from '@vkontakte/vkui';
 import { useActiveVkuiLocation } from '@vkontakte/vk-mini-apps-router';
 import { Persik, Home, NewPanel } from './panels';
 import { DEFAULT_VIEW_PANELS } from './routes';
@@ -22,22 +22,6 @@ export const App = () => {
   }, []);
 
 
-    const [draggingList, updateDraggingList] = useState([
-      'Say',
-      'Hello',
-      'To',
-      'My',
-      'Little',
-      'Friend',
-    ]);
-  
-    const onDragFinish = ({ from, to }) => {
-      const _list = [...draggingList];
-      _list.splice(from, 1);
-      _list.splice(to, 0, draggingList[from]);
-      updateDraggingList(_list);
-    };
-
   return (
     <SplitLayout popout={popout}>
       <SplitCol autoSpaced>
@@ -46,17 +30,7 @@ export const App = () => {
           <Persik id="persik" />
           <NewPanel id="newpanel" />
         </View>
-      </SplitCol>
-  
-      <SplitCol width={280} maxWidth={280} className={viewWidth.tabletPlus.className}>
         <Group>
-        <List>
-            {draggingList.map((item) => (
-              <Cell key={item} before={<Avatar />} draggable onDragFinish={onDragFinish}>
-                {item}
-              </Cell>
-            ))}
-          </List>
         </Group>
       </SplitCol>
     </SplitLayout>

@@ -8,7 +8,7 @@ export const Home = ({ id, fetchedUser }) => {
 
   return (
     <Panel id={id}>
-      <PanelHeader>Моя главная</PanelHeader>
+      <PanelHeader> Моя главная</PanelHeader>
       {fetchedUser && (
         <Group header={<Header mode="secondary">User Data Fetched with VK Bridge</Header>}>
           <Cell before={photo_200 && <Avatar src={photo_200} />} subtitle={city?.title}>
