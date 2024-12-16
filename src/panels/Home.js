@@ -1,28 +1,59 @@
-import { Panel, PanelHeader, Header, Button, Group, Cell, Div, Avatar, Link } from '@vkontakte/vkui';
+import { Panel, PanelHeader, Header, Button, Group,  Div, Avatar, Link, DisplayTitle, Card, CardGrid, PanelHeaderClose} from '@vkontakte/vkui';
 import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router';
 import PropTypes from 'prop-types';
 
-export const Home = ({ id, fetchedUser }) => {
-  const { photo_200, city, first_name, last_name } = { ...fetchedUser };
-  const routeNavigator = useRouteNavigator();
+export const Home = () => {
+const routeNavigator = useRouteNavigator();
 
-  return (
-    <Panel id={id}>
-      <PanelHeader> Моя главная</PanelHeader>
-      {fetchedUser && (
-        <Group header={<Header mode="secondary">User Data Fetched with VK Bridge</Header>}>
-          <Cell before={photo_200 && <Avatar src={photo_200} />} subtitle={city?.title}>
-            {`${first_name} ${last_name}`}
-          </Cell>
-        </Group>
-      )}
+return (
+  <Panel id="panel1">
+  <PanelHeader before={<PanelHeaderClose />}>Анонс</PanelHeader>
 
-      <Group header={<Header mode="secondary">Navigation Example</Header>}>
+<Div>
+<DisplayTitle level="1" style={{ marginBottom: 16, marginTop: 5}}>
+Афиша театральных событий Челябинска
+</DisplayTitle>
+</Div>
+
+      <Group>
         <Div>
-          <Button stretched size="l" mode="secondary" onClick={() => routeNavigator.push('persik')}>
-            Покажите Персика, пожалуйста!
+      <Group mode="plain" header={<Header size="s">Балет "Щелкунчик"</Header>}>
+        <CardGrid size="l">
+          <Card>
+            <div style={{ height: 96 }} />
+          </Card>
+        </CardGrid>
+        <Div><Button stretched size="l" mode="secondary" onClick={() => routeNavigator.push('newpanel')}>
+            Оставить озыв о мероприятии
+          </Button></Div>
+      </Group>
+
+      <Group mode="plain" header={<Header size="s">Опера "Евгений Онегин"</Header>}>
+        <CardGrid size="l">
+          <Card>
+            <div style={{ height: 96 }} />
+          </Card>
+        </CardGrid>
+        <Div><Button stretched size="l" mode="secondary" onClick={() => routeNavigator.push('newpanel')}>
+            Оставить озыв о мероприятии
+          </Button></Div>
+      </Group>
+
+      <Group mode="plain" header={<Header size="s">Спектакль "Дон Жуан"</Header>}>
+        <CardGrid size="l">
+          <Card>
+            <div style={{ height: 96 }} />
+          </Card>
+        </CardGrid>
+        <Div><Button stretched size="l" mode="secondary" onClick={() => routeNavigator.push('newpanel')}>
+            Оставить озыв о мероприятии
+          </Button></Div>
+      </Group>
+          <Div>
+          <Button stretched size="l" mode="primary" onClick={() => routeNavigator.push('persik')}>
+            Добавить мероприятие
           </Button>
-          <Link onClick={() => routeNavigator.push('newpanel')}>Новая панель</Link>
+          </Div>
         </Div>
       </Group>
     </Panel>
